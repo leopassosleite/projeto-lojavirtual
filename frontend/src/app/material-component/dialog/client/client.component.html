@@ -1,0 +1,79 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">{{dialogData.action}} Cliente</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="clientForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-error *ngIf="clientForm.controls.name.touched && clientForm.controls.name.invalid">
+                        <span *ngIf="clientForm.controls.name.errors.required">Campo obrigatóro</span>
+                        <span *ngIf="clientForm.controls.name.errors.pattern">Campo inválido</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Telefone</mat-label>
+                    <input matInput formControlName="contactNumber" required>
+                    <mat-error
+                        *ngIf="clientForm.controls.contactNumber.touched && clientForm.controls.contactNumber.invalid">
+                        <span *ngIf="clientForm.controls.contactNumber.errors.required">Campo obrigatóro</span>
+                        <span *ngIf="clientForm.controls.contactNumber.errors.pattern">Campo inválido</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="clientForm.controls.email.touched && clientForm.controls.email.invalid">
+                        <span *ngIf="clientForm.controls.email.errors.required">Campo obrigatóro</span>
+                        <span *ngIf="clientForm.controls.email.errors.pattern">Campo inválido</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Cidade</mat-label>
+                    <input matInput formControlName="city" required>
+                    <mat-error *ngIf="clientForm.controls.city.touched && clientForm.controls.city.invalid">
+                        <span *ngIf="clientForm.controls.city.errors.required">Campo obrigatóro</span>
+                        <span *ngIf="clientForm.controls.city.errors.pattern">Campo inválido</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Estado</mat-label>
+                    <input matInput formControlName="state" required>
+                    <mat-error *ngIf="clientForm.controls.state.touched && clientForm.controls.state.invalid">
+                        <span *ngIf="clientForm.controls.state.errors.required">Campo obrigatóro</span>
+                        <span *ngIf="clientForm.controls.state.errors.pattern">Campo inválido</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Vendedor</mat-label>
+                    <mat-select formControlName="sellerId">
+                        <mat-option *ngFor="let seller of sellers" [value]="seller.id">{{seller.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Produto</mat-label>
+                    <mat-select formControlName="productId">
+                        <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(clientForm.valid && clientForm.dirty)">{{action}}</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

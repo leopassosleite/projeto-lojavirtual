@@ -1,0 +1,68 @@
+<mat-card>
+    <b><span>Produtos</span></b>
+    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">Inserir Produtos</button>
+</mat-card>
+<hr>
+<mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Produto</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef> Modelo</th>
+            <td mat-cell *matCellDef="let element">{{element.model}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef> Ano</th>
+            <td mat-cell *matCellDef="let element">{{element.year}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef> Marca</th>
+            <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descrição</th>
+            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Preço</th>
+            <td mat-cell *matCellDef="let element">{{element.price}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="categoryId">
+            <th mat-header-cell *matHeaderCellDef> Categoria</th>
+            <td mat-cell *matCellDef="let element">{{element.categoryName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="statusProductId">
+            <th mat-header-cell *matHeaderCellDef> Status</th>
+            <td mat-cell *matCellDef="let element">{{element.statusProductName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleEditAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row;columns:displayedColumns"></tr>
+    </table>
+</div>
